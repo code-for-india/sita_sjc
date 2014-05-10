@@ -33,14 +33,17 @@ public class TestServlet extends HttpServlet {
 	          // Execute SQL query
 					stmt = (Statement) conn.createStatement();
 					String sql;
-					sql = "SELECT schoolcode, pincode FROM data";
+					sql = "SELECT * FROM data";
 					rs = stmt.executeQuery(sql);
 					while(rs.next()){
 	              //Retrieve by column name
-						int id  = rs.getInt("schoolcode");
-						int val = rs.getInt("pincode");
-						out.println("ID: " + id + "<br>");
-						out.println(", Val: " + val + "<br>");
+						String schoolname  = rs.getString("schoolname");
+						double lat = rs.getDouble("lat");
+						double lng = rs.getDouble("lng");
+						int ramp = rs.getInt("ramp");
+						int library = rs.getInt("library");
+						out.println("ID: " + schoolname + "<br>");
+						out.println(", Val: " + lat +" "+lng + "<br>");
 	              
 					}
 					rs.close();
@@ -69,14 +72,17 @@ public class TestServlet extends HttpServlet {
           // Execute SQL query
 				stmt = (Statement) conn.createStatement();
 				String sql;
-				sql = "SELECT schoolcode, pincode FROM data";
+				sql = "SELECT *FROM data";
 				rs = stmt.executeQuery(sql);
 				while(rs.next()){
               //Retrieve by column name
-					int id  = rs.getInt("schoolcode");
-					int val = rs.getInt("pincode");
-					out.println("ID: " + id + "<br>");
-					out.println(", Val: " + val + "<br>");
+					String schoolname  = rs.getString("schoolname");
+					double lat = rs.getDouble("lat");
+					double lng = rs.getDouble("lng");
+					int ramp = rs.getInt("ramp");
+					int library = rs.getInt("library");
+					out.println("ID: " + schoolname + "<br>");
+					out.println(", Val: " + lat +" "+lng + "<br>");
               
 				}
 				rs.close();
@@ -96,14 +102,34 @@ public class TestServlet extends HttpServlet {
 	    response.setContentType("text/html");
 	    PrintWriter out = response.getWriter();
 
-	    out.println("<h2>Button Clicked</h2>");
-
-	    int schoolcode = Integer.parseInt(request.getParameter("schoolcode"));
-	    int pincode = Integer.parseInt(request.getParameter("pincode"));
+	    
+	    String schoolname = request.getParameter("schoolname");
+	    double lat = Double.parseDouble(request.getParameter("lat"));
+	    double lng = Double.parseDouble(request.getParameter("lng"));
 	    int ramp = Integer.parseInt(request.getParameter("ramp"));
 	    int library = Integer.parseInt(request.getParameter("library"));
 
 	    if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Production) {
+	    	final String JDBC_DRIVER="com.mysql.jdbc.GoogleDriver";  
+			final String DB_URL="jdbc:google:mysql://utssrc:testdb/TEST?user=root";
+			java.sql.Connection conn = null;
+			Statement  stmt = null;
+			ResultSet   rs = null;
+		
+			try{
+				Class.forName("com.mysql.jdbc.GoogleDriver");
+				conn =  DriverManager.getConnection(DB_URL);
+				stmt = (Statement) conn.createStatement();
+				String sql;
+				sql = "insert into data values(" + ramp + "," + library + ",'" + schoolname +"'," + lat + ","+ lng + ")";
+				int o = stmt.executeUpdate(sql);
+				if(o != 0)
+					out.println("Updated");
+				conn.close();
+		    	stmt.close();
+			} catch(Exception e){
+				response.getWriter().println(e.toString());
+			}
 	    	
 	    } else {
 	    	
@@ -111,8 +137,7 @@ public class TestServlet extends HttpServlet {
 			final String DB_URL="jdbc:mysql://localhost:3306/TEST?";
 			java.sql.Connection conn = null;
 			Statement  stmt = null;
-			ResultSet   rs = null;
-		
+				
 			//  Database credentials
 			final String USER = "root";
 			final String PASS = "riorobles";
@@ -121,8 +146,12 @@ public class TestServlet extends HttpServlet {
 				Class.forName("com.mysql.jdbc.Driver");
 				conn =  DriverManager.getConnection(DB_URL, USER, PASS);
 				stmt = (Statement) conn.createStatement();
-				sql = "insert into data values(" + schoolcode + "," + pincode + "," + ramp +"," + library + ")";
-				stmt.executeUpdate(sql);
+				sql  = "insert into data values(" + ramp + "," + library + ",'" + schoolname +"'," + lat + ","+ lng + ")";
+				int o = stmt.executeUpdate(sql);
+				if(o != 0)
+					out.println("Updated");
+				conn.close();
+		    	stmt.close();
 			}catch(Exception e) {
 				response.getWriter().println(e.toString());
 			}

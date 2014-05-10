@@ -65,6 +65,8 @@ public class TestServlet extends HttpServlet {
 			try{
 				PrintWriter out = resp.getWriter();	          // Register JDBC driver
 				Class.forName("com.mysql.jdbc.Driver");
+				resp.setContentType("text/html"); 	
+			    out.println("<script type=\"text/javascript\" src=\"https://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=false\"></script>");
 
           // Open a connection
 				conn =  DriverManager.getConnection(DB_URL, USER, PASS);

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">School Infrastructure Tracking</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="rate_school">பள்ளி மதிப்பிடுக</string>
+    <string name="send_photo">புகைப்படம் எடுக்க</string>
+    <string name="change_lang">Change Language</string>
+    <string name="ramp_desc">எப்படி சரிவுப்பாதை உள்ளது?</string>
+    <string name="ramp_good">நன்றாக உள்ளது</string>
+    <string name="ramp_okay">சில குறைபாடுகள் உள்ளது</string>
+    <string name="ramp_not_present">தற்போது இல்லை</string>
+    <string name="lib_desc">நூலகம் எப்பட ிஉள்ளது?</string>
+    <string name="lib_good">நன்றாக உள்ளது</string>
+    <string name="lib_okay">சில குறைபாடுகள் உள்ளது</string>
+    <string name="lib_not_present">தற்போது இல்லை</string>
+    <string name="next">அடுத்து</string>
+    <string name="submit">சமர்ப்பிக்க</string>
+    <string name="school_name">பள்ளி பெயர்</string>
+    <string name="reviewer">உங்கள் பெயர்</string>
+    <string name="dialog_title">சமர்ப்பிக்கப்பட்டது</string>
+    <string name="dialog_msg">நன்றி</string>
+    <string name="toilet_desc">கழிப்பறைகள் எப்படி இருக்கின்றன?</string>
+    <string name="toilet_good">தனி ஆண்கள் மற்றும் பெண்கள் கழிப்பறை</string>
+    <string name="toilet_okay">பொதுவான ஆண்கள் மற்றும் பெண்கள் கழிப்பறை</string>
+    <string name="toilet_not_present">தற்போது இல்லை</string>
+    <string name="classroom_desc">வகுப்பறைகள் எப்படி இருக்கின்றன?</string>
+    <string name="classroom_good">நன்றாக உள்ளது</string>
+    <string name="classroom_okay">பெஞ்சுகள் மற்றும் கரும்பலகையில காணவில்லை்</string>
+    <string name="classroom_not_present">தற்போது இல்ல</string>
+    <string name="playground_desc">விளையாட்டு மைதானம் எப்படி உள்ளது?</string>
+    <string name="playground_good">நன்றாக உள்ளது</string>
+    <string name="playground_okay">குழந்தைகளுக்கு ஏற்றதாக இல்லை</string>
+    <string name="playground_not_present">தற்போது இல்ல</string>
+    <string name="teacher_desc">எப்படி நீங்கள் ஆசிரியர்கள் மதிப்பிடுவீர்கள்?</string>
+    <string name="teacher_good">போதுமான மற்றும் தகுதி வாய்ந்த ஆசிரியர்</string>
+    <string name="teacher_okay">பதகுதி குறைந்த ஆசிரியர்கள்ு</string>
+    <string name="teacher_not_present">போதாது</string>
+    <string name="meal_desc">எப்படி மதிய உணவு உள்ளது?</string>
+    <string name="meal_good">தூய்மையாக உள்ளது</string>
+    <string name="meal_okay">தூய்மையாக அல்ல</string>
+    <string name="meal_not_present">தற்போது இல்ல</string>
+    <string name="comment">உங்கள் கருத்து</string>
+
+</resources>

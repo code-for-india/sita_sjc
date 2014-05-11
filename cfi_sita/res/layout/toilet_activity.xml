@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.77"
+        android:background="@color/PaleGoldenrod" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/Beige"
+                android:gravity="center"
+                android:height="50dp"
+                android:text="@string/toilet_desc"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        </LinearLayout>
+
+        <RadioGroup
+            android:id="@+id/rg1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/linearLayout1"
+            android:layout_marginTop="58dp" >
+
+        </RadioGroup>
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_above="@+id/radioButton1"
+            android:layout_alignRight="@+id/radioButton1"
+            android:layout_below="@+id/linearLayout1"
+            android:layout_margin="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/toilet" />
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/radioButton2"
+            android:layout_margin="10dp"
+            android:layout_marginTop="87dp"
+            android:background="@color/OrangeRed"
+            android:text="@string/toilet_desc"
+            android:width="200dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/rg1"
+            android:layout_margin="10dp"
+            android:layout_marginTop="56dp"
+            android:background="@color/green"
+            android:height="60dp"
+            android:text="@string/toilet_good"
+            android:width="200dp" />
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/radioButton1"
+            android:layout_margin="10dp"
+            android:background="@color/Gold"
+            android:text="@string/toilet_not_present"
+            android:width="200dp" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_below="@+id/radioButton3"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="25dp"
+            android:background="@color/DarkKhaki"
+            android:height="75dp"
+            android:minWidth="150dp"
+            android:text="@string/next" />
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">School Infrastructure Tracking</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="rate_school">Rate school</string>
+    <string name="send_photo">Send photo</string>
+    <string name="change_lang">மொழி மாற்றம்</string>
+    <string name="ramp_desc">How is the ramp?</string>
+    <string name="ramp_good">Good</string>
+    <string name="ramp_okay">Ramp present but has problems</string>
+    <string name="ramp_not_present">No Ramp</string>
+    
+    <string name="lib_desc">How is the library?</string>
+    <string name="lib_good">Good</string>
+    <string name="lib_okay">Library present but has problems</string>
+    <string name="lib_not_present">No Library</string>
+    <string name="next">Next</string>
+    <string name="submit">Submit</string>
+    <string name="school_name">What is the school name?</string>
+    <string name="reviewer">What is your name?</string>
+    
+     <string name="toilet_desc">How are the toilets?</string>
+    <string name="toilet_good">Separate toilet</string>
+    <string name="toilet_okay">Common toilet</string>
+    <string name="toilet_not_present">No toilet</string>
+    
+     <string name="classroom_desc">How are the classrooms?</string>
+    <string name="classroom_good">Functional</string>
+    <string name="classroom_okay">Missing benches/blackboard etc</string>
+    <string name="classroom_not_present">Open roof classrooms</string>
+    
+     <string name="playground_desc">How is the playground?</string>
+    <string name="playground_good">Functional</string>
+    <string name="playground_okay">Present but not kid friendly</string>
+    <string name="playground_not_present">Not present</string>
+    
+     <string name="teacher_desc">How do you rate the teachers?</string>
+    <string name="teacher_good">Adequate and qualified</string>
+    <string name="teacher_okay">Adequate but not qualified</string>
+    <string name="teacher_not_present">Inadequate</string>
+    
+     <string name="meal_desc">How do you rate the midday meal?</string>
+    <string name="meal_good">Meal facility is hygenic</string>
+    <string name="meal_okay">Not hygenic</string>
+    <string name="meal_not_present">Not available</string>
+    
+    <string name="dialog_title">Rating submitted</string>
+    <string name="dialog_msg">Thanks for your rating</string>
+    
+    <string name="comment">Comments</string>
+    
+
+</resources>

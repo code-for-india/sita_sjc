@@ -64,9 +64,19 @@ body {
 	src="https://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=false">
     </script>
 <script type="text/javascript">
+var map,heatmap;
+function convtext(val)
+{
+	if(val>2)
+		return '<font color="green">Good</font>';
+	if(val<=2 && val > 1)
+	    return '<font color="orange">Fair</font>';
+	if(val<=1)
+	    return '<font color="red">Poor</font>';
+}
     
-      function setmarkerinfowindows(lat,long,schoolname,ramp,library, map, heatmapData)
-	  {
+function setmarkerinfowindows(lat,long,schoolname,ramp,library,teacher, classroom, playground, toilet, meal, map, heatmapData, pic)
+{
 	  
 	  var myLatlng = new google.maps.LatLng(lat, long)
 	  
@@ -76,15 +86,34 @@ body {
       title:"Hello World!"
       });
       
-
+      var picdisp = [];
+       for(i=0;i<pic.length;i++){
+    	picdisp =   picdisp + ' <a href="' + pic[i] + '">'+ 'Picture'+i+'</a> ';
+		}
       
+      ramp = 4 - ramp;
+      library = 4 - library;
+      teacher = 4 - teacher;
+      classroom = 4 - classroom;
+      playground = 4 - playground;
+      toilet = 4 - toilet;
+      meal = 4 - meal;
+       var school_rank = ((ramp+library + teacher + classroom + playground + toilet + meal)/7).toFixed(2);
+  	   var wt_avg = 3 - school_rank;
       var contentString = '<div id="content">'+
       '<div id="siteNotice">'+
       '</div>'+
-      '<h1 id="firstHeading" class="firstHeading">' + schoolname + '</h1>'+
+      '<h3 id="firstHeading" class="firstHeading">' + schoolname + '</h3>'+
       '<div id="bodyContent">'+
-      '<p> Ramp condition : <b>' + ramp + '/5 </b> </p>'+
-      '<p> Library : <b>' + library + '/5 </b> </p>' +
+      '<p>School Score : <b>' + school_rank + '/3 </b> </p>'+
+      '<p>Classrooms : <b>' + convtext(classroom) + ' </b> <br>'+
+      'Teacher Standard : <b>' + convtext(teacher) + ' </b> <br>'+
+      'Playground : <b>' + convtext(playground) + ' </b> <br>'+
+      'Toilet : <b>' + convtext(toilet) + ' </b> <br>'+
+      'Meal Quality : <b>' + convtext(meal) + ' </b> <br>'+
+       'Ramp condition : <b>' + convtext(ramp) + '</b> <br>'+
+      'Library : <b>' + convtext(library) + ' </b> </p>' +
+      picdisp +
       '</div>'+
       '</div>';
       
@@ -103,13 +132,12 @@ body {
     	fillOpacity: 0.0,
     	map: map,
     	bounds: new google.maps.LatLngBounds(
-      new google.maps.LatLng(lat-0.01, long-0.01),
-      new google.maps.LatLng(lat+0.01, long+0.01 ))
+      new google.maps.LatLng(lat-0.1, long-0.1),
+      new google.maps.LatLng(lat+0.1, long+0.1 ))
   	});
   	    
         
  	    
-  	    var wt_avg = 5 - (ramp+library)/2;
   	    var heatdat = [
   	    {location : myLatlng, weight : wt_avg} ];
   	    
@@ -121,7 +149,7 @@ body {
         marker.setMap(map);
         google.maps.event.addListener(rectangle, 'click', function() {
         infowindow.open(map);
-        setTimeout(function () { infowindow.close(); }, 2000);
+        setTimeout(function () { infowindow.close(); }, 4000);
         });
   	    
 	    
@@ -131,23 +159,27 @@ body {
 	  
 	  
 	  
+	  
       function initialize1() {
       
-      var myLatlng = new google.maps.LatLng(-34.397, 150.644)
+      var myLatlng = new google.maps.LatLng(18, 78)
       
         var mapOptions = {
           center: myLatlng,
-          zoom: 12,
+          zoom: 5,
           mapTypeId: google.maps.MapTypeId.ROADMAP
         };
-        var map = new google.maps.Map(document.getElementById("map-canvas"),
+         map = new google.maps.Map(document.getElementById("map-canvas"),
             mapOptions);
             
                   var schoolname = 'Adarsh Vidyalaya';
       var ramp = 1;
       var library = 2;
+	  var teacher,classroom,playground,toilet,meal;
       
       var heatmapData = [ ];
+	  	  var pic = ['http://1.bp.blogspot.com/-8WqSHTro6wo/TV5ycmgKfPI/AAAAAAAACFo/HU6B1fHZJsw/s1600/school%2Blibrary.jpg',
+	  			'http://playgroundsforkids.co.uk/wp-content/uploads/2013/11/playgrounddd.jpg'];
       
  <%
  	while(result.next()){
@@ -158,6 +190,12 @@ body {
 	 double lng = result.getDouble("lng");
 	 int ramp = result.getInt("ramp");
 	 int library = result.getInt("library");
+	 int teacher = result.getInt("teacher");
+	 int classroom = result.getInt("classroom");
+	 int playground = result.getInt("playground");
+	 int toilet = result.getInt("toilet");
+	 int meal = result.getInt("meal");
+	 
      
      %>
    schoolname = "<%= sname %>";
@@ -166,14 +204,20 @@ body {
    lat = <%= lat %>;
    lng = <%= lng %>;
    ramp = <%= ramp %>;
-   heatmapData = setmarkerinfowindows(lat,lng,schoolname,ramp,library,map,heatmapData );
+   teacher = <%= teacher %>;
+   classroom = <%= classroom %>;
+   meal = <%= meal %>;
+   toilet = <%= toilet %>;
+   playground = <%= playground %>;
+ 
+   heatmapData = setmarkerinfowindows(lat,lng,schoolname,ramp,library,teacher, classroom, playground, toilet, meal,map,heatmapData, pic );
    
    <%
    }
    %>  
     
       
-    	var heatmap = new google.maps.visualization.HeatmapLayer({
+    	 heatmap = new google.maps.visualization.HeatmapLayer({
   		data: heatmapData,
   		radius: 20
 		});
@@ -193,6 +237,9 @@ body {
     </script>
 </head>
 <body>
+<div id="panel">
+<img alt="" src="http://i61.tinypic.com/2zqbxmu.jpg"></img>
+	</div>
 	<div id="map-canvas" />
 </body>
 </html>

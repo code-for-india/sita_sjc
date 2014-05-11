@@ -110,6 +110,11 @@ public class TestServlet extends HttpServlet {
 	    double lng = Double.parseDouble(request.getParameter("lng"));
 	    int ramp = Integer.parseInt(request.getParameter("ramp"));
 	    int library = Integer.parseInt(request.getParameter("library"));
+	    int teacher = Integer.parseInt(request.getParameter("teacher"));
+	    int classroom = Integer.parseInt(request.getParameter("classroom"));
+	    int playground = Integer.parseInt(request.getParameter("playground"));
+	    int toilet = Integer.parseInt(request.getParameter("toilet"));
+	    int meal = Integer.parseInt(request.getParameter("meal"));
 
 	    if (SystemProperty.environment.value() == SystemProperty.Environment.Value.Production) {
 	    	final String JDBC_DRIVER="com.mysql.jdbc.GoogleDriver";  
@@ -123,7 +128,7 @@ public class TestServlet extends HttpServlet {
 				conn =  DriverManager.getConnection(DB_URL);
 				stmt = (Statement) conn.createStatement();
 				String sql;
-				sql = "insert into data values(" + ramp + "," + library + ",'" + schoolname +"'," + lat + ","+ lng + ")";
+				sql = "insert into data values(" + ramp + "," + library + ",'" + schoolname +"'," + lat + ","+ lng + "," + teacher + "," + classroom + "," + playground + "," + toilet  + "," +  meal +")";
 				int o = stmt.executeUpdate(sql);
 				if(o != 0)
 					out.println("Updated");
@@ -148,7 +153,7 @@ public class TestServlet extends HttpServlet {
 				Class.forName("com.mysql.jdbc.Driver");
 				conn =  DriverManager.getConnection(DB_URL, USER, PASS);
 				stmt = (Statement) conn.createStatement();
-				sql  = "insert into data values(" + ramp + "," + library + ",'" + schoolname +"'," + lat + ","+ lng + ")";
+				sql = "insert into data values(" + ramp + "," + library + ",'" + schoolname +"'," + lat + ","+ lng + "," + teacher + "," + classroom + "," + playground + "," + toilet  + "," +  meal +")";
 				int o = stmt.executeUpdate(sql);
 				if(o != 0)
 					out.println("Updated");
